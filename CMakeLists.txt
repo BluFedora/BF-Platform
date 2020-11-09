@@ -114,14 +114,14 @@ if(BIFROST_OPT_GRAPHICS_VULKAN)
     "${PROJECT_NAME}_static"
     PRIVATE
       GLFW_INCLUDE_VULKAN
-      BIFROST_PLATFORM_USE_VULKAN=1
+      BF_PLATFORM_USE_VULKAN=1
   )
 else()
   target_compile_definitions(
     "${PROJECT_NAME}_static"
     PRIVATE
       GLFW_INCLUDE_VULKAN
-      BIFROST_PLATFORM_USE_OPENGL=1
+      BF_PLATFORM_USE_OPENGL=1
   )
 endif()
 
@@ -190,13 +190,13 @@ if(BIFROST_OPT_GRAPHICS_VULKAN)
     PRIVATE
       GLFW_INCLUDE_VULKAN
     PUBLIC
-      BIFROST_PLATFORM_USE_VULKAN=1
+      BF_PLATFORM_USE_VULKAN=1
   )
 else()
   target_compile_definitions(
     "${PROJECT_NAME}_shared"
     PUBLIC
-      BIFROST_PLATFORM_USE_OPENGL=1
+      BF_PLATFORM_USE_OPENGL=1
   )
 endif()
   set_target_properties(

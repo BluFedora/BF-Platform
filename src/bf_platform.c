@@ -13,9 +13,9 @@ bfPlatformInitParams g_BifrostPlatform;
 
 bfPlatformGfxAPI bfPlatformGetGfxAPI(void)
 {
-#if defined(BIFROST_PLATFORM_USE_VULKAN)
+#if defined(BF_PLATFORM_USE_VULKAN)
   return BIFROST_PLATFORM_GFX_VUlKAN;
-#elif defined(BIFROST_PLATFORM_USE_OPENGL)
+#elif defined(BF_PLATFORM_USE_OPENGL)
   return BIFROST_PLATFORM_GFX_OPENGL;
 #else
 #error "One of these should be defined"
