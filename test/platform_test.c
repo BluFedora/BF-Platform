@@ -1,11 +1,7 @@
-# BluFedora Platform Layer Library
+//
+// Minimal Example of Creating A Window
+//
 
-This is a abstraction for handling windowing and events for the various platforms.
-Also defines some macros for detecting which platform you are currently building for.
-
-Minimal Window Creation Example:
-
-```cpp
 #include "bf/Platform.h" /* Platform API */
 
 #include <stdio.h> /* printf */
@@ -71,13 +67,3 @@ static void OnWindowUpdate(bfWindow* window)
 {
   // Handle Updating / Drawing Here
 }
-```
-
-## Build Requirements
-
-- Libraries
-  - GLFW or SDL (Based on the CMake Configuration)
-  - Vulkan (If you choose the Vulkan graphics backend)
-    - There is no linking to the Vulkan library, just needs headers.
-- Compiler
-  - C99
