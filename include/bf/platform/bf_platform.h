@@ -105,10 +105,10 @@ typedef enum
 
 typedef void* (*bfPlatformAllocator)(void* ptr, size_t old_size, size_t new_size, void* user_data);
 
-typedef struct bfPlatformInitParams_t
+typedef struct
 {
-  int                 argc;      /*!< Argc from the main function, could be 0.                                                                                    */
-  char**              argv;      /*!< Argv from the main function, allowed to be NULL                                                                             */
+  int                 argc;      /*!< Argc from the main, could be 0.                                                                                             */
+  char**              argv;      /*!< Argv from the main, allowed to be NULL                                                                                      */
   bfPlatformAllocator allocator; /*!< Custom allocator if you wanted to control where the platform gets it's memory from, if NULL will use the default allocator. */
   void*               user_data; /*!< User data for keeping tack some some global state, could be NULL.                                                           */
 
@@ -132,8 +132,12 @@ enum
   k_bfWindowFlagIsFocusedOnShow   = (1 << 6),
 
   /* Meta Flags */
-  k_bfWindowFlagsDefault = k_bfWindowFlagIsVisible | k_bfWindowFlagIsResizable | k_bfWindowFlagIsMaximizedOnShow | k_bfWindowFlagIsFocused | k_bfWindowFlagIsDecorated,
-  k_bfWindowFlagsMax     = k_bfPlatformForceEnumSize
+  k_bfWindowFlagsDefault = k_bfWindowFlagIsVisible |
+                           k_bfWindowFlagIsResizable |
+                           k_bfWindowFlagIsMaximizedOnShow |
+                           k_bfWindowFlagIsFocused |
+                           k_bfWindowFlagIsDecorated,
+  k_bfWindowFlagsMax = k_bfPlatformForceEnumSize
 };
 
 typedef struct bfWindow_t
