@@ -10,11 +10,11 @@ cmake_minimum_required(VERSION 3.8)
 
 project(BF_Platform VERSION 0.0.2 DESCRIPTION "The platform abstraction layer sub project.")
 
-option(BIFROST_PLATFORM_GLFW       "This will use GLFW for windowing and system functions." ON)
-option(BIFROST_PLATFORM_SDL        "This will use SDL for windowing and system functions."  OFF)
-option(BIFROST_PLATFORM_QT         "This will use QT for windowing and system functions."   OFF)
-option(BIFROST_OPT_GRAPHICS_VULKAN "Vulkan will be used as the graphics Backend"            ON)
-option(BIFROST_OPT_GRAPHICS_OPENGL "OpenGL will be used as the graphics Backend"            OFF)
+option(BF_OPT_PLATFORM_GLFW       "This will use GLFW for windowing and system functions." ON)
+option(BF_OPT_PLATFORM_SDL        "This will use SDL for windowing and system functions."  OFF)
+option(BF_OPT_PLATFORM_QT         "This will use QT for windowing and system functions."   OFF)
+option(BF_OPT_GRAPHICS_VULKAN "Vulkan will be used as the graphics Backend"            ON)
+option(BF_OPT_GRAPHICS_OPENGL "OpenGL will be used as the graphics Backend"            OFF)
 
 if (WIN32)
   if(CMAKE_SIZEOF_VOID_P EQUAL 8)
@@ -39,7 +39,7 @@ endif()
 set(BF_PLATFORM_SOURCE_FILES   "${PROJECT_SOURCE_DIR}/src/bf_platform.c")
 set(BF_PLATFORM_LIB_FILES "")
 
-if(BIFROST_PLATFORM_GLFW)
+if(BF_OPT_PLATFORM_GLFW)
   set(BF_PLATFORM_SOURCE_FILES
     ${BF_PLATFORM_SOURCE_FILES}
     "${PROJECT_SOURCE_DIR}/src/bf_platform_glfw.c"
@@ -59,7 +59,7 @@ if(BIFROST_PLATFORM_GLFW)
     )
   endif()
 
-elseif(BIFROST_PLATFORM_SDL)
+elseif(BF_OPT_PLATFORM_SDL)
   set(BF_PLATFORM_SOURCE_FILES
     ${BF_PLATFORM_SOURCE_FILES}
     "src/bf_platform_sdl.c"
@@ -78,7 +78,7 @@ elseif(BIFROST_PLATFORM_SDL)
     )
   endif()
 
-elseif(BIFROST_PLATFORM_QT)
+elseif(BF_OPT_PLATFORM_QT)
   set(BF_PLATFORM_SOURCE_FILES
     ${BF_PLATFORM_SOURCE_FILES}
     "src/bf_platform_qt.c"
@@ -99,7 +99,7 @@ target_include_directories(
     "${PROJECT_SOURCE_DIR}/lib/include"
 )
 
-if(BIFROST_OPT_GRAPHICS_VULKAN)
+if(BF_OPT_GRAPHICS_VULKAN)
   find_package(Vulkan)
 
   if(${Vulkan_FOUND})
@@ -176,7 +176,7 @@ if(NOT EMSCRIPTEN)
       OUTPUT_NAME bf.PlatformDLL
   )
 
-if(BIFROST_OPT_GRAPHICS_VULKAN)
+if(BF_OPT_GRAPHICS_VULKAN)
   if(${Vulkan_FOUND})
     target_include_directories(
       "${PROJECT_NAME}_shared" 
