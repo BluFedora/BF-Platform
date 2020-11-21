@@ -457,6 +457,9 @@ bfWindow* bfPlatformCreateWindow(const char* title, int width, int height, uint3
     glfwSetWindowCloseCallback(glfw_handle, GLFW_onWindowClose);
     glfwSetWindowRefreshCallback(glfw_handle, GLFW_onWindowRefresh);
 
+    // TODO(SR): This should be user configurable.
+    glfwSetWindowSizeLimits(glfw_handle, 300, 70, GLFW_DONT_CARE, GLFW_DONT_CARE);
+
     if (!s_MainWindow)
     {
       s_MainWindow = window;

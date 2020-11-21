@@ -93,8 +93,8 @@
 #if __cplusplus
 extern "C" {
 #endif
-struct bfEvent_t;
-typedef struct bfEvent_t bfEvent;
+struct bfEvent;
+typedef struct bfEvent bfEvent;
 
 typedef enum
 {
@@ -114,9 +114,9 @@ typedef struct
 
 } bfPlatformInitParams;
 
-struct bfWindow_t;
-typedef void (*bfWindowEventFn)(struct bfWindow_t* window, bfEvent* event);
-typedef void (*bfWindowFrameFn)(struct bfWindow_t* window);
+struct bfWindow;
+typedef void (*bfWindowEventFn)(struct bfWindow* window, bfEvent* event);
+typedef void (*bfWindowFrameFn)(struct bfWindow* window);
 
 #define k_bfPlatformForceEnumSize (0x7FFFFFFF)
 
@@ -140,7 +140,7 @@ enum
   k_bfWindowFlagsMax = k_bfPlatformForceEnumSize
 };
 
-typedef struct bfWindow_t
+typedef struct bfWindow
 {
   void*           handle;
   void*           user_data;

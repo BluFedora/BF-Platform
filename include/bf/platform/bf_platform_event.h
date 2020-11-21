@@ -1,3 +1,4 @@
+/******************************************************************************/
 /*!
  * @file   bf_platform_event.h
  * @author Shareef Abdoul-Raheem (http://blufedora.github.io/)
@@ -7,6 +8,7 @@
  *
  * @copyright Copyright (c) 2019-2020
  */
+/******************************************************************************/
 #ifndef BF_PLATFORM_EVENT_H
 #define BF_PLATFORM_EVENT_H
 
@@ -137,7 +139,7 @@ typedef enum
 
 } bfEventType;
 
-typedef struct bfKeyboardEvent_t
+typedef struct  //  bfKeyboardEvent_t
 {
   union
   {
@@ -148,7 +150,7 @@ typedef struct bfKeyboardEvent_t
 
 } bfKeyboardEvent;
 
-typedef struct bfMouseEvent_t
+typedef struct  //  bfMouseEvent_t
 {
   int           x;
   int           y;
@@ -157,14 +159,14 @@ typedef struct bfMouseEvent_t
 
 } bfMouseEvent;
 
-typedef struct bfScrollWheelEvent_t
+typedef struct  //  bfScrollWheelEvent_t
 {
   double x;
   double y;
 
 } bfScrollWheelEvent;
 
-typedef struct bfWindowEvent_t
+typedef struct  //  bfWindowEvent_t
 {
   int           width;
   int           height;
@@ -206,13 +208,11 @@ typedef struct bfWindowEvent_t
   };
 #endif
 
-struct bfWindow_t;
-
-struct bfEvent_t
+struct bfEvent
 {
-  bfEventType        type;
-  uint8_t            flags;
-  struct bfWindow_t* receiver;
+  bfEventType      type;
+  uint8_t          flags;
+  struct bfWindow* receiver;
 
   union
   {
@@ -255,26 +255,26 @@ struct bfEvent_t
     flags |= BIFROST_EVT_FLAGS_IS_ACCEPTED;
   }
 
-  bfEvent_t(bfEventType type, uint8_t flags, bfKeyboardEvent key) :
-    bfEvent_t(type, flags)
+  bfEvent(bfEventType type, uint8_t flags, bfKeyboardEvent key) :
+    bfEvent(type, flags)
   {
     this->keyboard = key;
   }
 
-  bfEvent_t(bfEventType type, uint8_t flags, bfMouseEvent mouse) :
-    bfEvent_t(type, flags)
+  bfEvent(bfEventType type, uint8_t flags, bfMouseEvent mouse) :
+    bfEvent(type, flags)
   {
     this->mouse = mouse;
   }
 
-  bfEvent_t(bfEventType type, uint8_t flags, bfScrollWheelEvent scroll_wheel) :
-    bfEvent_t(type, flags)
+  bfEvent(bfEventType type, uint8_t flags, bfScrollWheelEvent scroll_wheel) :
+    bfEvent(type, flags)
   {
     this->scroll_wheel = scroll_wheel;
   }
 
-  bfEvent_t(bfEventType type, uint8_t flags, bfWindowEvent window) :
-    bfEvent_t(type, flags)
+  bfEvent(bfEventType type, uint8_t flags, bfWindowEvent window) :
+    bfEvent(type, flags)
   {
     this->window = window;
   }
@@ -295,7 +295,7 @@ struct bfEvent_t
 
   // clang-format off
   // ReSharper disable once CppPossiblyUninitializedMember
-  bfEvent_t(bfEventType type, uint8_t flags) :  // NOLINT
+  bfEvent(bfEventType type, uint8_t flags) :  // NOLINT
     type{type},
     flags{flags}
   {
@@ -339,7 +339,7 @@ struct bfEvent_t
   };
 #endif
 
-typedef struct bfEvent_t bfEvent;
+typedef struct bfEvent bfEvent;
 #if __cplusplus
 }
 #endif
@@ -349,7 +349,7 @@ BF_PLATFORM_API bfKeyboardEvent    bfKeyboardEvent_makeCodepoint(unsigned codepo
 BF_PLATFORM_API bfMouseEvent       bfMouseEvent_make(int x, int y, uint8_t target_button, bfButtonFlags button_state);
 BF_PLATFORM_API bfScrollWheelEvent bfScrollWheelEvent_make(double x, double y);
 BF_PLATFORM_API bfWindowEvent      bfWindowEvent_make(int width, int height, bfWindowFlags state);
-BF_PLATFORM_API struct bfEvent_t   bfEvent_makeImpl(bfEventType type, uint8_t flags, const void* data, size_t data_size);
+BF_PLATFORM_API struct bfEvent     bfEvent_makeImpl(bfEventType type, uint8_t flags, const void* data, size_t data_size);
 
 #define bfEvent_make(type, flags, data) \
   bfEvent_makeImpl((type), (flags), &data, sizeof(data))  // NOLINT(bugprone-macro-parentheses)

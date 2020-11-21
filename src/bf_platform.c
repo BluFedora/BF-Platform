@@ -156,7 +156,7 @@ bfWindowEvent bfWindowEvent_make(int width, int height, bfWindowFlags state)
   return self;
 }
 
-struct bfEvent_t bfEvent_makeImpl(bfEventType type, uint8_t flags, const void* data, size_t data_size)
+struct bfEvent bfEvent_makeImpl(bfEventType type, uint8_t flags, const void* data, size_t data_size)
 {
 #if __cplusplus
   bfEvent self{type, flags};

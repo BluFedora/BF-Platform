@@ -1,20 +1,21 @@
-#ifndef BIFROST_PLATFORM_FWD_H
-#define BIFROST_PLATFORM_FWD_H
+#ifndef BF_PLATFORM_FWD_H
+#define BF_PLATFORM_FWD_H
 
 #if __cplusplus
 extern "C" {
 #endif
 
-struct bfEvent_t;
-typedef struct bfEvent_t bfEvent;
+struct bfEvent;
+typedef struct bfEvent bfEvent;
 
-struct bfWindow_t;
-typedef struct bfWindow_t bfWindow;
+struct bfWindow;
+typedef struct bfWindow bfWindow;
+
 #if __cplusplus
 }
 #endif
 
-#endif /* BIFROST_PLATFORM_FWD_H */
+#endif /* BF_PLATFORM_FWD_H */
 
 /******************************************************************************/
 /*
