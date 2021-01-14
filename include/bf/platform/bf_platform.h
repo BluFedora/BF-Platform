@@ -150,6 +150,14 @@ typedef struct bfWindow
 
 } bfWindow; /*!< Base class for the window, each backend can extend it in various ways. */
 
+typedef enum
+{
+  BF_CLIPBOARD_UTF8_TEXT,
+
+} bfClipbardDataType;
+
+typedef int Boolean;
+
 /*!
  * @brief
  *   Initializes the underlying platform abstraction layer.
@@ -165,7 +173,7 @@ typedef struct bfWindow
 BF_PLATFORM_API int  bfPlatformInit(bfPlatformInitParams params);
 BF_PLATFORM_API void bfPlatformPumpEvents(void);
 BF_PLATFORM_API bfWindow*        bfPlatformCreateWindow(const char* title, int width, int height, uint32_t flags);
-BF_PLATFORM_API int              bfWindow_wantsToClose(bfWindow* self);
+BF_PLATFORM_API Boolean          bfWindow_wantsToClose(bfWindow* self);
 BF_PLATFORM_API void             bfWindow_show(bfWindow* self);
 BF_PLATFORM_API void             bfWindow_getPos(bfWindow* self, int* x, int* y);
 BF_PLATFORM_API void             bfWindow_setPos(bfWindow* self, int x, int y);
@@ -180,6 +188,8 @@ BF_PLATFORM_API void             bfWindow_setAlpha(bfWindow* self, float value);
 BF_PLATFORM_API void             bfPlatformDestroyWindow(bfWindow* window);
 BF_PLATFORM_API void             bfPlatformQuit(void);
 BF_PLATFORM_API float            bfPlatformGetDPIScale(void);  // TODO(SR): Bad API cuz it assumes one monitor.
+BF_PLATFORM_API const char*      bfPlatformGetClipboard(bfClipbardDataType type);
+BF_PLATFORM_API Boolean          bfPlatformSetClipboard(bfClipbardDataType type, const char* data, size_t data_length);
 BF_PLATFORM_API bfPlatformGfxAPI bfPlatformGetGfxAPI(void);
 BF_PLATFORM_API void*            bfPlatformDefaultAllocator(void* ptr, size_t old_size, size_t new_size, void* user_data);
 BF_PLATFORM_API void*            bfPlatformAlloc(size_t size);

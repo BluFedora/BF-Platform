@@ -567,6 +567,28 @@ float bfPlatformGetDPIScale(void)
   return result;
 }
 
+const char* bfPlatformGetClipboard(bfClipbardDataType type)
+{
+  assert(type == BF_CLIPBOARD_UTF8_TEXT && "Currently only supported data type.");
+  return glfwGetClipboardString(NULL);
+}
+
+Boolean bfPlatformSetClipboard(bfClipbardDataType type, const char* data, size_t data_length)
+{
+  assert(type == BF_CLIPBOARD_UTF8_TEXT && "Currently only supported data type.");
+
+  char* const data_nul_terminated = bfPlatformAlloc(data_length + 1);
+
+  memcpy(data_nul_terminated, data, data_length);
+  data_nul_terminated[data_length] = '\0';
+
+  glfwSetClipboardString(NULL, data_nul_terminated);
+
+  bfPlatformFree(data_nul_terminated, data_length + 1);
+
+  return 1;
+}
+
 #if GLFW_INCLUDE_VULKAN
 int bfWindow_createVulkanSurface(bfWindow* self, VkInstance instance, VkSurfaceKHR* out)
 {
