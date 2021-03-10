@@ -10,9 +10,9 @@ cmake_minimum_required(VERSION 3.8)
 
 project(BF_Platform VERSION 0.0.2 DESCRIPTION "The platform abstraction layer sub project.")
 
-option(BF_OPT_PLATFORM_GLFW       "This will use GLFW for windowing and system functions." ON)
-option(BF_OPT_PLATFORM_SDL        "This will use SDL for windowing and system functions."  OFF)
-option(BF_OPT_PLATFORM_QT         "This will use QT for windowing and system functions."   OFF)
+option(BF_OPT_PLATFORM_GLFW   "This will use GLFW for windowing and system functions." ON)
+option(BF_OPT_PLATFORM_SDL    "This will use SDL for windowing and system functions."  OFF)
+option(BF_OPT_PLATFORM_QT     "This will use QT for windowing and system functions."   OFF)
 option(BF_OPT_GRAPHICS_VULKAN "Vulkan will be used as the graphics Backend"            ON)
 option(BF_OPT_GRAPHICS_OPENGL "OpenGL will be used as the graphics Backend"            OFF)
 
